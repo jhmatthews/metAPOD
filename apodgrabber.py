@@ -8,6 +8,8 @@ class MyOpener(FancyURLopener):
 
 class ascript:
 
+	'''class which contains command for setting background'''
+
 	def __init__(self, filename):
 
 		self.command = '/usr/bin/osascript<<END\ntell application "Finder"\n\
@@ -18,7 +20,22 @@ class ascript:
 
 class APOD():
 
+	'''class with functions for getting images'''
+
 	def get_image_url(self, url):
+
+		'''
+		gets url from NASA APOD webpage
+
+		:INPUT:
+			url 		string
+						url to search 
+						e.g. "http://apod.nasa.gov/apod/astropix.html
+
+		:OUTPUT:
+			image 		string 
+						image url to fetch
+		'''
 
 		import urllib2
 
@@ -42,19 +59,40 @@ class APOD():
 
 	def get_image (self, url):
 
+		'''
+		gets image at a given url
+
+		:INPUT:
+			url 		string
+						url location of image 
+
+		:OUTPUT:
+			filename 	string 
+						local image filename
+		'''
+
 		myopener = MyOpener()
 
-		filename = url[37:]
+		filename = "images/%s" % url[37:]
 
 		retrieve = myopener.retrieve(url, filename)
 
 		return filename
 
 	def set_picture (self, filename):
-
 		
+		'''
+		sets picture as desktop background
 
-		fname = "/Users/jamesmatthews/Downloads/my-APOD-grabber/%s" % filename
+		:INPUT:
+			filename 	string 
+						local image filename
+
+		:OUTPUT:
+			0			success
+		'''
+
+		fname = "/Users/jamesmatthews/Downloads/my-APOD-grabber/images/%s" % filename
 
 		command = ascript(fname).command
 
@@ -65,16 +103,18 @@ class APOD():
 
 
 
-
-
-
+# create grabber, APOD class instance
 grabber = APOD()
 
+# get image url
 img = grabber.get_image_url ("http://apod.nasa.gov/apod/astropix.html")
 
+# get filename (locally) of image
 filename = grabber.get_image(img)
 
+# set as background
 grabber.set_picture(filename)
 
+# all done
 
 
