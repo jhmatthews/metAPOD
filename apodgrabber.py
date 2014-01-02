@@ -92,9 +92,13 @@ class APOD():
 			0			success
 		'''
 
-		fname = "/Users/jamesmatthews/Downloads/my-APOD-grabber/images/%s" % filename
+		cur_dir = os.getcwd()
+
+		fname = "%s/%s" % (cur_dir, filename)
 
 		command = ascript(fname).command
+
+		print command 
 
 		os.system ( command )
 
