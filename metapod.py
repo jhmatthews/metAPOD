@@ -1,6 +1,7 @@
 import os, sys
-import selenium_apod as sel 
+#import selenium_apod as sel 
 from urllib import FancyURLopener
+
 
 class MyOpener(FancyURLopener):
 	version = "APOD grabber FancyURLopener"
@@ -97,8 +98,6 @@ class APOD():
 		fname = "%s/%s" % (cur_dir, filename)
 
 		command = ascript(fname).command
-
-		print command 
 
 		os.system ( command )
 
