@@ -54,8 +54,11 @@ class APOD():
 					print data
 					image = "http://apod.nasa.gov/apod/%s" % data[1][6:-2]
 
-		
-		return image
+		try:
+			return image
+		except UnboundLocalError:
+			print "I'm really sorry, but I couldn't get the APOD: some different formatting in webpage...Exiting."
+			sys.exit(1)
 
 
 	def get_image (self, url):

@@ -122,6 +122,8 @@ if sys.argv[1] == "install":
 		# script name
 		script = "metapod.py"
 
+		hour = 18
+
 		# file text
 		pl = plist(user, directory, script, hour, plistname)
 
